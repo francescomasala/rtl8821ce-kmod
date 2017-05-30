@@ -5,7 +5,7 @@
 
 Name:		    rtl8812au-kmod
 Version:	    4.3.14
-Release:	    1%{?dist}
+Release:	    2%{?dist}
 Summary:	    Realtek 8812AU/8821AU USB WiFi driver
 
 Group:		    System Environment/Kernel
@@ -66,6 +66,9 @@ chmod 0755 $RPM_BUILD_ROOT%{kmodinstdir_prefix}*%{kmodinstdir_postfix}/* || :
 rm -rf $RPM_BUILD_ROOT
 
 %changelog
+* Tue May 30 2017 Alexei Panov <me AT elemc DOT name> 4.3.14-2
+-  Fixed obsolete-name parameter
+
 * Tue May 30 2017 Alexei Panov <me AT elemc DOT name> 4.3.14-1
 -  Initial build
 
