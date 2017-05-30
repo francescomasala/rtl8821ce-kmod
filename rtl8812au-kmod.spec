@@ -1,6 +1,9 @@
 %global RepoName rtl8812AU_8821AU_linux
 
-Name:		    rt8812au-kmod
+%global buildforkernels akmod
+%global debug_package %{nil}
+
+Name:		    rtl8812au-kmod
 Version:	    4.3.14
 Release:	    1%{?dist}
 Summary:	    Realtek 8812AU/8821AU USB WiFi driver
@@ -9,15 +12,15 @@ Group:		    System Environment/Kernel
 License:	    GPLv2
 URL:		    https://github.com/abperiasamy/%{RepoName}
 Source0:	    https://github.com/abperiasamy/%{RepoName}/archive/master.tar.gz
-Source11:       rt8812au-kmod-kmodtool-excludekernel-filterfile
+Source11:       rtl8812au-kmod-kmodtool-excludekernel-filterfile
 
-%global AkmodsBuildRequires %{_bindir}/kmodtool, elfutils-libelf-devel
+%global AkmodsBuildRequires %{_bindir}/kmodtool
+#, elfutils-libelf-devel
 BuildRequires:  %{AkmodsBuildRequires}
 
 %{!?kernels:BuildRequires: buildsys-build-rpmfusion-kerneldevpkgs-%{?buildforkernels:%{buildforkernels}}%{!?buildforkernels:current}-%{_target_cpu} }
-
 # kmodtool does its magic here
-%{expand:%(kmodtool --target %{_target_cpu} --repo rpmfusion --kmodname %{name} --filterfile %{SOURCE11} %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
+%{expand:%(kmodtool --target %{_target_cpu} --repo rpmfusion --kmodname %{name} --filterfile %{SOURCE11} --obsolete-name nvidia-newest --obsolete-version "%{?epoch}:%{version}" %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
 %description
 Realtek 8812AU/8821AU USB WiFi driver.
