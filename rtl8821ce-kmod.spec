@@ -6,12 +6,12 @@
 Name:		    rtl8821ce-kmod
 Version:	    4.3.14
 Release:	    2%{?dist}
-Summary:	    Realtek 8821ce USB WiFi driver
+Summary:	    Realtek 8821ce driver
 
 Group:		    System Environment/Kernel
 License:	    GPLv2
-URL:		    https://github.com/francescomasala/rtl8821ce
-Source0:	    https://github.com/abperiasamy/%{RepoName}/archive/master.tar.gz
+URL:		    https://github.com/francescomasala/rtl8821ce_linux
+Source0:	    https://github.com/francescomasala/%{RepoName}/archive/master.zip
 Source11:       rtl8821ce-kmod-kmodtool-excludekernel-filterfile
 
 %global AkmodsBuildRequires %{_bindir}/kmodtool
