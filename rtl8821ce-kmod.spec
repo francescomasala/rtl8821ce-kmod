@@ -1,18 +1,18 @@
-%global RepoName rtl8812AU_8821AU_linux
+%global RepoName rtl8821ce_linux
 
 %global buildforkernels akmod
 %global debug_package %{nil}
 
-Name:		    rtl8812au-kmod
+Name:		    rtl8821ce-kmod
 Version:	    4.3.14
 Release:	    2%{?dist}
-Summary:	    Realtek 8812AU/8821AU USB WiFi driver
+Summary:	    Realtek 8821ce USB WiFi driver
 
 Group:		    System Environment/Kernel
 License:	    GPLv2
-URL:		    https://github.com/abperiasamy/%{RepoName}
+URL:		    https://github.com/francescomasala/rtl8821ce
 Source0:	    https://github.com/abperiasamy/%{RepoName}/archive/master.tar.gz
-Source11:       rtl8812au-kmod-kmodtool-excludekernel-filterfile
+Source11:       rtl8821ce-kmod-kmodtool-excludekernel-filterfile
 
 %global AkmodsBuildRequires %{_bindir}/kmodtool
 #, elfutils-libelf-devel
@@ -20,14 +20,10 @@ BuildRequires:  %{AkmodsBuildRequires}
 
 %{!?kernels:BuildRequires: buildsys-build-rpmfusion-kerneldevpkgs-%{?buildforkernels:%{buildforkernels}}%{!?buildforkernels:current}-%{_target_cpu} }
 # kmodtool does its magic here
-%{expand:%(kmodtool --target %{_target_cpu} --repo rpmfusion --kmodname %{name} --filterfile %{SOURCE11} --obsolete-name rtl8812au --obsolete-version "%{?epoch}:%{version}" %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
+%{expand:%(kmodtool --target %{_target_cpu} --repo rpmfusion --kmodname %{name} --filterfile %{SOURCE11} --obsolete-name rtl8812ce --obsolete-version "%{?epoch}:%{version}" %{?buildforkernels:--%{buildforkernels}} %{?kernels:--for-kernels "%{?kernels}"} 2>/dev/null) }
 
 %description
-Realtek 8812AU/8821AU USB WiFi driver.
-for AC1200 (801.11ac) Wireless Dual-Band USB Adapter
-This code is base on version 4.3.14 from https://github.com/diederikdehaas/rtl8812AU
-Known Supported Devices:
-* COMFAST 1200Mbps USB Wireless Adapter(Model: CF-912AC)
+Realtek 8821ce USB WiFi driver.
 
 %prep
 %{?kmodtool_check}
